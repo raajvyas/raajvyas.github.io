@@ -275,50 +275,6 @@
 
   .lede{font-size:17px;}
 
-  /* --- Margin annotation / comment device --- */
-  .annotated{position:relative;}
-  mark.note{
-    background:linear-gradient(to bottom, transparent 60%, var(--highlight) 60%);
-    cursor:help;
-    position:relative;
-  }
-  .comment{
-    display:none;
-    font-family:var(--mono);
-    font-size:11.5px;
-    line-height:1.5;
-    color:var(--ink-soft);
-    background:#fff;
-    border:1px solid var(--rule);
-    border-left:3px solid var(--highlight);
-    padding:8px 10px;
-    margin:6px 0 16px;
-    border-radius:2px;
-  }
-  .comment .who{color:var(--stamp); font-weight:500;}
-  mark.note:hover + .comment,
-  mark.note:focus + .comment{display:block;}
-  mark.note{outline-offset:2px;}
-
-  @media (min-width:1150px){
-    .comment{
-      display:block;
-      position:absolute;
-      left:calc(100% + 28px);
-      width:190px;
-      top:var(--cy, 0);
-      margin:0;
-      opacity:0.92;
-    }
-    .comment::before{
-      content:"";
-      position:absolute;
-      left:-14px; top:14px;
-      width:12px; height:1px;
-      background:var(--rule);
-    }
-  }
-
   ul.plain{list-style:none; margin:0; padding:0;}
   ul.plain li{
     padding:10px 0;
@@ -447,10 +403,9 @@
       </div>
     </div>
 
-    <section class="section annotated" id="about">
+    <section class="section" id="about">
       <p class="lede">I build the AI features inside Acrobat that help people actually get through their documents instead of just staring at them.</p>
-      <p>Before product, I was a software engineer, which still shows up in how I scope things. I'd rather stress-test an assumption with a spreadsheet or a prototype than <mark class="note" tabindex="0" style="--cy:0px">argue about it in a meeting</mark>.</p>
-      <div class="comment"><span class="who">R.V.</span>: old engineering habit. Still the fastest way to find out if an idea actually works.</div>
+      <p>Before product, I was a software engineer, which still shows up in how I scope things. I'd rather stress-test an assumption with a spreadsheet or a prototype than argue about it in a meeting.</p>
     </section>
 
     <section class="section" id="work">
