@@ -1,77 +1,435 @@
-<!DOCTYPE html lang="en">
-    <head> 
-        <meta charset="UTF-8">
-        <title>Raaj's Portfolio</title>
-        <!-- CSS only -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        <!-- Navigation bar-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Raaj's Portfolio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="https://raajvyas.github.io/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Projects
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="https://raajvyas.github.io/pacman/">PacMen Exercise</a>
-                    <a class="dropdown-item" href="https://raajvyas.github.io/eyes/">Eye Exercise</a>
-                    <a class="dropdown-item" href="https://raajvyas.github.io/map/">Real Time Bus Tracker</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="https://raajvyas.github.io/hangman/">Hangman 1.0</a>
-                  </div>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-            </div>
-        </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raaj Vyas — Product Manager</title>
+<meta name="description" content="Raaj Vyas — Senior Product Manager, Adobe Acrobat AI Assistant.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEAE1;
+    --paper-edge:#DFDACC;
+    --ink:#1D1B17;
+    --ink-soft:#4B473F;
+    --rule:#C7C0AC;
+    --highlight:#F2C14E;
+    --mark:#A8402F;
+    --stamp:#2E6E52;
+    --stamp-soft:#DCE9E2;
+    --chrome:#D9D4C6;
+    --shadow: 0 30px 60px -30px rgba(29,27,23,0.35);
+    --serif: "Source Serif 4", Georgia, serif;
+    --sans: "IBM Plex Sans", -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+  }
 
-        <!--Container-->
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/f2JuY0gA0N0" title="Introduction" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="col">
-                   <p> Hi, My name is Raaj. I am a Senior Product Manager at Amazon and I drive CX improvements for our retail home improvement category. My background is in software development but I've been slightly out of touch with programming. Passion for coding got me to this boot camp and I look forward to learning more.</p>
-                   <p> Outside of work, I like to play cricket and I enjoy going on road trips. I have driven all along the west coast in the US from Seattle to San Diego. </p>
-                </div>
-            </div>
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top, #F5F2E9, #DAD5C6 140%);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.6;
+    min-height:100vh;
+    padding:48px 20px 80px;
+  }
+
+  a{color:var(--stamp); text-decoration-thickness:1.5px; text-underline-offset:3px;}
+  a:hover{color:var(--mark);}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--mark);
+    outline-offset:3px;
+  }
+
+  .doc{
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+  }
+
+  /* --- Viewer chrome, like a document open in a reader --- */
+  .chrome{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:var(--chrome);
+    border:1px solid var(--rule);
+    border-bottom:none;
+    border-radius:10px 10px 0 0;
+    padding:10px 18px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+  }
+  .chrome .dots{display:flex; gap:6px;}
+  .chrome .dot{width:8px; height:8px; border-radius:50%; background:#B7AF9A;}
+  .chrome .filename{flex:1; text-align:center; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+  /* --- The "page" --- */
+  .page{
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:0 0 4px 4px;
+    box-shadow:var(--shadow);
+    padding:56px 56px 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  @media (max-width:600px){
+    .page{padding:36px 22px 28px;}
+  }
+
+  /* page-fold corner easter egg */
+  .fold{
+    position:absolute;
+    top:0; right:0;
+    width:56px; height:56px;
+    cursor:pointer;
+    overflow:hidden;
+  }
+  .fold::before{
+    content:"";
+    position:absolute;
+    top:0; right:0;
+    width:0; height:0;
+    border-style:solid;
+    border-width:0 56px 56px 0;
+    border-color:transparent var(--paper-edge) transparent transparent;
+    transition:border-width 0.25s ease;
+  }
+  .fold:hover::before, .fold:focus-visible::before{
+    border-width:0 74px 74px 0;
+  }
+  .fold-note{
+    position:absolute;
+    top:6px; right:-58px;
+    font-family:var(--mono);
+    font-size:9px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    transform:rotate(45deg);
+    transform-origin:top left;
+    opacity:0;
+    transition:opacity 0.25s ease, right 0.25s ease;
+  }
+  .fold:hover .fold-note, .fold:focus-visible .fold-note{
+    opacity:1;
+    right:-6px;
+  }
+
+  .identity{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:28px;
+  }
+  .identity h1{margin-bottom:4px;}
+  .identity .role{margin:0;}
+  .portrait{
+    width:72px;
+    height:72px;
+    object-fit:cover;
+    border-radius:6px;
+    border:1px solid var(--rule);
+    box-shadow:var(--shadow);
+    flex-shrink:0;
+  }
+  @media (max-width:480px){
+    .identity{align-items:flex-start;}
+    .portrait{width:56px; height:56px;}
+  }
+
+  .media{margin-bottom:28px;}
+  .media-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .media-frame{
+    position:relative;
+    width:100%;
+    padding-top:56.25%;
+    border-radius:6px;
+    overflow:hidden;
+    border:1px solid var(--rule);
+    box-shadow:var(--shadow);
+    background:#000;
+  }
+  .media-frame iframe{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    border:0;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--stamp);
+    margin:0 0 6px;
+  }
+
+  h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(34px, 6vw, 48px);
+    margin:0 0 4px;
+    line-height:1.05;
+  }
+
+  .role{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:0 0 28px;
+  }
+  .role strong{color:var(--ink); font-weight:500;}
+
+  h2{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:22px;
+    margin:0 0 14px;
+    padding-top:2px;
+  }
+
+  .section{
+    padding:30px 0;
+    border-top:1px solid var(--rule);
+    position:relative;
+  }
+  .section:first-of-type{border-top:none;}
+
+  p{margin:0 0 14px; color:var(--ink);}
+  p:last-child{margin-bottom:0;}
+
+  .lede{font-size:17px;}
+
+  /* --- Margin annotation / comment device --- */
+  .annotated{position:relative;}
+  mark.note{
+    background:linear-gradient(to bottom, transparent 60%, var(--highlight) 60%);
+    cursor:help;
+    position:relative;
+  }
+  .comment{
+    display:none;
+    font-family:var(--mono);
+    font-size:11.5px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    background:#fff;
+    border:1px solid var(--rule);
+    border-left:3px solid var(--highlight);
+    padding:8px 10px;
+    margin:6px 0 16px;
+    border-radius:2px;
+  }
+  .comment .who{color:var(--stamp); font-weight:500;}
+  mark.note:hover + .comment,
+  mark.note:focus + .comment{display:block;}
+  mark.note{outline-offset:2px;}
+
+  @media (min-width:820px){
+    .comment{
+      display:block;
+      position:absolute;
+      left:calc(100% + 28px);
+      width:190px;
+      top:var(--cy, 0);
+      margin:0;
+      opacity:0.92;
+    }
+    .comment::before{
+      content:"";
+      position:absolute;
+      left:-14px; top:14px;
+      width:12px; height:1px;
+      background:var(--rule);
+    }
+  }
+
+  ul.plain{list-style:none; margin:0; padding:0;}
+  ul.plain li{
+    padding:10px 0;
+    border-bottom:1px dashed var(--rule);
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+  }
+  ul.plain li:last-child{border-bottom:none;}
+  .tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:#fff;
+    background:var(--stamp);
+    padding:2px 7px;
+    border-radius:3px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  .stamp-block{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--stamp);
+    color:var(--stamp);
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    padding:6px 12px;
+    border-radius:4px;
+    transform:rotate(-2deg);
+    margin-bottom:6px;
+  }
+
+  .attachments{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(190px,1fr));
+    gap:12px;
+  }
+  .attachment{
+    border:1px solid var(--rule);
+    background:#F7F4EC;
+    border-radius:6px;
+    padding:14px 14px 12px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .attachment:hover{transform:translateY(-2px); box-shadow:0 10px 18px -12px rgba(29,27,23,0.4);}
+  .attachment .clip{font-family:var(--mono); font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.05em;}
+  .attachment a{font-family:var(--serif); font-size:16px; font-weight:600; display:block; margin-top:4px;}
+
+  footer{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .links{display:flex; gap:18px; font-family:var(--mono); font-size:13px;}
+
+  .pageno{
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:14px;
+  }
+
+  ::selection{background:var(--highlight); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="doc">
+
+  <div class="chrome">
+    <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+    <div class="filename">raaj-vyas.pdf — Page 1 of 1 — 100%</div>
+    <div>⤓</div>
+  </div>
+
+  <main class="page">
+    <button class="fold" aria-label="Reveal document version note" tabindex="0">
+      <span class="fold-note">v2 · updated Jul 2026</span>
+    </button>
+
+    <p class="eyebrow">Document / Profile</p>
+    <div class="identity">
+      <img class="portrait" src="IMG_1190.JPG" alt="Photo of Raaj Vyas">
+      <div>
+        <h1>Raaj Vyas</h1>
+        <p class="role">Senior Product Manager · <strong>Adobe</strong>, Acrobat AI Assistant · Seattle, WA</p>
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="media-label">Attached video</div>
+      <div class="media-frame">
+        <iframe src="https://www.youtube.com/embed/f2JuY0gA0N0" title="Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <section class="section annotated">
+      <p class="lede">I build the AI features inside Acrobat that help people actually get through their documents instead of just staring at them.</p>
+      <p>Before product, I was a software engineer, which still shows up in how I scope things — I'd rather stress-test an assumption with a spreadsheet or a prototype than <mark class="note" tabindex="0" style="--cy:0px">argue about it in a meeting</mark>.</p>
+      <div class="comment"><span class="who">R.V.</span> — old engineering habit. Still the fastest way to find out if an idea actually works.</div>
+    </section>
+
+    <section class="section">
+      <h2>What I'm working on</h2>
+      <p>AI features inside Acrobat — the kind that read, search, and reason over your documents so you don't have to do it manually.</p>
+    </section>
+
+    <section class="section">
+      <h2>Background</h2>
+      <p>Software engineering at Wipro → product management at Digital River and Amazon Alexa Shopping → an MBA at the Carlson School of Management (2017) → product at Adobe since 2024. Each stop left me more allergic to shipping something I can't defend with data.</p>
+    </section>
+
+    <section class="section">
+      <h2>Outside of work</h2>
+      <p>I play cricket, and I once drove the entire West Coast from Seattle to San Diego just to see what was there. Lately I spend a lot of spare cycles on real estate — underwriting small multifamily deals in Seattle and small-business acquisitions, mostly for the exercise of building a model that doesn't lie to me. I also dabble in recreational math and astrocartography, which are really the same hobby: finding structure in things that look like noise.</p>
+    </section>
+
+    <section class="section">
+      <h2>Early builds</h2>
+      <p style="margin-bottom:16px;">A few small projects from when I was getting back into code — kept live because they still work.</p>
+      <div class="attachments">
+        <div class="attachment">
+          <span class="clip">.app</span>
+          <a href="https://raajvyas.github.io/pacman/">PacMen Exercise</a>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: 18rem; vertical-align: bottom;">
-                        <div class="card-body">
-                            <h5 class="card-title">More about me</h5>
-                            <ul><a href="https://github.com/raajvyas" class="card-link">GitHub</a></ul>
-                            <ul><a href="https://www.linkedin.com/feed/" class="card-link">LinkedIn<a></ul>       
-                            <ul><a href="mailto:raajhvyas@gmail.com" class="card-link">Contact info</a></ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                   <img src="./IMG_1190.JPG" title="Image"/>
-                </div>
-            </div>
+        <div class="attachment">
+          <span class="clip">.app</span>
+          <a href="https://raajvyas.github.io/eyes/">Eye Exercise</a>
         </div>
-        <!-- Javascript and Dependencies-->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+        <div class="attachment">
+          <span class="clip">.app</span>
+          <a href="https://raajvyas.github.io/map/">Real-Time Bus Tracker</a>
+        </div>
+        <div class="attachment">
+          <span class="clip">.app</span>
+          <a href="https://raajvyas.github.io/hangman/">Hangman 1.0</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="section">
+      <span class="stamp-block">Open to conversation</span>
+      <div class="links">
+        <a href="https://github.com/raajvyas">GitHub</a>
+        <a href="https://www.linkedin.com/in/raajvyas">LinkedIn</a>
+        <a href="mailto:raajhvyas@gmail.com">Email</a>
+      </div>
+    </footer>
+  </main>
+
+  <p class="pageno">— 1 —</p>
+</div>
+
+</body>
 </html>
