@@ -53,10 +53,62 @@
     outline-offset:3px;
   }
 
+  .viewer{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+  }
+
+  .bookmarks{
+    width:200px;
+    flex-shrink:0;
+    position:sticky;
+    top:48px;
+    font-family:var(--mono);
+  }
+  .bookmarks-label, .properties-label{
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .bookmarks ul{list-style:none; margin:0 0 28px; padding:0;}
+  .bookmarks li{margin-bottom:2px;}
+  .bookmarks a{
+    display:block;
+    padding:7px 10px;
+    border-radius:4px;
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:12.5px;
+    border-left:2px solid transparent;
+    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .bookmarks a:hover, .bookmarks a:focus-visible{
+    background:var(--stamp-soft);
+    color:var(--stamp);
+    border-left-color:var(--stamp);
+  }
+  .properties dl{margin:0; font-size:12px;}
+  .properties dt{color:var(--ink-soft); margin-top:8px;}
+  .properties dt:first-child{margin-top:0;}
+  .properties dd{margin:0 0 2px; color:var(--ink); font-weight:500;}
+
+  section{scroll-margin-top:24px;}
+
+  @media (max-width:1000px){
+    .viewer{display:block;}
+    .bookmarks{display:none;}
+  }
+
   .doc{
     max-width:760px;
     margin:0 auto;
     position:relative;
+    flex:1;
   }
 
   /* --- Viewer chrome, like a document open in a reader --- */
@@ -87,7 +139,6 @@
     box-shadow:var(--shadow);
     padding:56px 56px 40px;
     position:relative;
-    overflow:hidden;
   }
   @media (max-width:600px){
     .page{padding:36px 22px 28px;}
@@ -249,7 +300,7 @@
   mark.note:focus + .comment{display:block;}
   mark.note{outline-offset:2px;}
 
-  @media (min-width:820px){
+  @media (min-width:1150px){
     .comment{
       display:block;
       position:absolute;
@@ -345,11 +396,33 @@
 </head>
 <body>
 
-<div class="doc">
+<div class="viewer">
+
+  <nav class="bookmarks" aria-label="Section bookmarks">
+    <div class="bookmarks-label">Bookmarks</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Currently</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#outside">Outside of work</a></li>
+      <li><a href="#early-builds">Early builds</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="properties">
+      <div class="properties-label">Document properties</div>
+      <dl>
+        <dt>Author</dt><dd>Raaj Vyas</dd>
+        <dt>Role</dt><dd>Senior PM, Adobe</dd>
+        <dt>Location</dt><dd>Seattle, WA</dd>
+      </dl>
+    </div>
+  </nav>
+
+  <div class="doc">
 
   <div class="chrome">
     <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-    <div class="filename">raaj-vyas.pdf — Page 1 of 1 — 100%</div>
+    <div class="filename">raaj-vyas.pdf · Page 1 of 1 · 100%</div>
     <div>⤓</div>
   </div>
 
@@ -374,28 +447,28 @@
       </div>
     </div>
 
-    <section class="section annotated">
+    <section class="section annotated" id="about">
       <p class="lede">I build the AI features inside Acrobat that help people actually get through their documents instead of just staring at them.</p>
       <p>Before product, I was a software engineer, which still shows up in how I scope things. I'd rather stress-test an assumption with a spreadsheet or a prototype than <mark class="note" tabindex="0" style="--cy:0px">argue about it in a meeting</mark>.</p>
-      <div class="comment"><span class="who">R.V.</span> — old engineering habit. Still the fastest way to find out if an idea actually works.</div>
+      <div class="comment"><span class="who">R.V.</span>: old engineering habit. Still the fastest way to find out if an idea actually works.</div>
     </section>
 
-    <section class="section">
+    <section class="section" id="work">
       <h2>What I'm working on</h2>
       <p>AI features inside Acrobat: the kind that read, search, and reason over your documents so you don't have to do it manually.</p>
     </section>
 
-    <section class="section">
+    <section class="section" id="background">
       <h2>Background</h2>
       <p>Software engineering at Wipro → an MBA at the Carlson School of Management (2017) → product management at Digital River and Amazon Home Improvement + Alexa Shopping → product at Adobe since 2024. Each stop left me more allergic to shipping something I can't defend with data.</p>
     </section>
 
-    <section class="section">
+    <section class="section" id="outside">
       <h2>Outside of work</h2>
-      <p>I play cricket, and I once drove the entire West Coast from Seattle to San Diego just to see what was there. Lately I spend a lot of spare cycles on real estate — underwriting small multifamily deals in Seattle and small-business acquisitions, mostly for the exercise of building a model that doesn't lie to me. I also dabble in recreational math and astrocartography, which are really the same hobby: finding structure in things that look like noise.</p>
+      <p>I play cricket, and I once drove the entire West Coast from Seattle to San Diego just to see what was there. Lately I spend a lot of spare cycles on real estate: underwriting small multifamily deals in Seattle and small-business acquisitions, mostly for the exercise of building a model that doesn't lie to me. I also dabble in recreational math and astrocartography, which are really the same hobby: finding structure in things that look like noise.</p>
     </section>
 
-    <section class="section">
+    <section class="section" id="early-builds">
       <h2>Early builds</h2>
       <p style="margin-bottom:16px;">A few small projects from when I was getting back into code. Kept live because they still work.</p>
       <div class="attachments">
@@ -418,7 +491,7 @@
       </div>
     </section>
 
-    <footer class="section">
+    <footer class="section" id="contact">
       <span class="stamp-block">Open to conversation</span>
       <div class="links">
         <a href="https://github.com/raajvyas">GitHub</a>
@@ -428,7 +501,8 @@
     </footer>
   </main>
 
-  <p class="pageno">— 1 —</p>
+  <p class="pageno">· 1 ·</p>
+  </div>
 </div>
 
 </body>
